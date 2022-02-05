@@ -1,7 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
 	let songs;
-	let songImage;
+	let timer;
+
+	const debounce = (v) => {
+		clearTimeout(timer);
+		timer = setTimeout(async () => {
+			const response = await fetch('http://127.0.0.1:5002/music/' + v);
+			const data = await response.json();
+			songs = getSongs(data);
+		}, 1000);
+	};
 
 	const getSongs = (songListData) => {
 		const songList = songListData.filter((song) => song.resultType === 'song');
@@ -13,26 +22,38 @@
 		return imageLenght[0].url;
 	};
 
-	onMount(async () => {
-		const response = await fetch('http://127.0.0.1:5002/music/Three');
-		// const response = await fetch('https://api.publicapis.org/entries');
-		const data = await response.json();
-		// topSongName = songs;
-		songs = getSongs(data);
-		console.log(songs);
-	});
+	// onMount(async () => {
+	// 	const response = await fetch('http://127.0.0.1:5002/music/Three');
+	// 	const data = await response.json();
+	// 	songs = getSongs(data);
+	// });
 </script>
 
 <section>
 	<h1>Muse Player</h1>
 	<h2>TopSong</h2>
-	<input type="search" name="" id="" placeholder="Search Song" />
+	<input
+		type="search"
+		name=""
+		id=""
+		placeholder="Search Song"
+		on:keyup={({ target: { value } }) => debounce(value)}
+	/>
 	{#if songs == undefined}
 		Loading songs
 	{:else}
 		{#each songs as song}
 			<h3>{song.title}</h3>
-			<img src={getMaxImageSizeURL(song)} alt="" />
+			<img src={getMaxImageSizeURL(song)} alt={song.title} />
+			<!-- <iframe
+				width="200"
+				height="200"
+				src="https://www.youtube.com/embed/{song.videoId}"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen
+			/> -->
 		{/each}
 	{/if}
 </section>
