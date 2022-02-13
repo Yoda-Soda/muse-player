@@ -17,22 +17,22 @@ class Employees(Resource):
     def get(self):
         return {'employees': 'hello employees'} # Fetches first column that is Employee ID
 
-class Tracks(Resource):
-    def get(self):
-        result = {'data': 'Tracks'}
-        return jsonify(result)
+class Artist(Resource):
+    def get(self, channelId):
+        artist_results = ytmusic.get_artist(channelId)
+        return artist_results
 
 class Music_Search(Resource):
-    def get(self, search):
-        search_results = ytmusic.search(search)
+    def get(self, search, filter):
+        search_results = ytmusic.search(search, filter)
         return search_results
         
 
 api.add_resource(Employees, '/employees') # Route_1
-api.add_resource(Tracks, '/tracks') # Route_2
-api.add_resource(Music_Search, '/music/<search>') # Route_3
+api.add_resource(Artist, '/artist/<channelId>') # Route_2
+api.add_resource(Music_Search, '/music/<filter>/<search>') # Route_3
 
 
 
 if __name__ == '__main__':
-     app.run(port='5002')
+     app.run(port='4231')

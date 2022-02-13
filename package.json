@@ -4,7 +4,7 @@
 	"scripts": {
 		"start": "run-p dev api",
 		"api": "python3 app.py",
-		"dev": "svelte-kit dev",
+		"dev": "svelte-kit dev --port 4230",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
