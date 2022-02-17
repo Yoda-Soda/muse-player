@@ -3,7 +3,7 @@
 	let songs;
 	let timer;
 	let statusMsg = 'Try searching for songs';
-	const apiServer = 'http://192.168.1.11:4444';
+	const apiServer = 'http://test.janclaasen.me:4444';
 	let isTopOfPage = false;
 
 	const setTopOfPage = () => {
