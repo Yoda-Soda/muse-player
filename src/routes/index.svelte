@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import inView from '../actions/inView.js';
 	let songs;
 	let timer;
 	let statusMsg = 'Try searching for songs';
