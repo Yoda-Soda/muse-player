@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from ytmusicapi import YTMusic
 
 
-ytmusic = YTMusic('headers_auth.json')
+ytmusic = YTMusic('auth.json')
 
 
 app = Flask(__name__)

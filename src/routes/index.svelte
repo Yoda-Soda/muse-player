@@ -3,7 +3,7 @@
 	let songs;
 	let timer;
 	let statusMsg = 'Try searching for songs';
-	const apiServer = 'http://museapi.janclaasen.me';
+	const apiServer = 'http://localhost:4231';
 	let isTopOfPage = false;
 
 	const setTopOfPage = () => {
@@ -72,6 +72,7 @@
 			{#each songs as song}
 				<section class="song">
 					<img
+						referrerPolicy="no-referrer"
 						loading="lazy"
 						src={getMaxImageSizeURL(song) ? getMaxImageSizeURL(song) : 'hello'}
 						alt={song.title}
@@ -165,10 +166,10 @@
 		font-size: 32px;
 		font-family: 'Roboto', sans-serif;
 	}
-	h3 {
+	/* h3 {
 		font-size: 21px;
 		font-family: 'Roboto', sans-serif;
-	}
+	} */
 	.songs {
 		display: grid;
 		width: 100%;

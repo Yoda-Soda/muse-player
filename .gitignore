@@ -6,4 +6,4 @@ node_modules
 .env
 .env.*
 !.env.example
-headers_auth.json
+# headers_auth.json
